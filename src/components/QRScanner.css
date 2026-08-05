@@ -1,0 +1,271 @@
+.qr-scanner-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.scanner-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.scanner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.scanner-section h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hint {
+  color: #666;
+  font-size: 0.9rem;
+  background: #f0f0f0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.qr-input {
+  flex: 1;
+  padding: 0.9rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.qr-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn-verify {
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-verify:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-verify:active {
+  transform: translateY(0);
+}
+
+.result-box {
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.result-box.success {
+  background: #d4edda;
+  border-left: 5px solid #28a745;
+  color: #155724;
+}
+
+.result-box.error {
+  background: #f8d7da;
+  border-left: 5px solid #dc3545;
+  color: #721c24;
+}
+
+.result-box h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.user-info {
+  margin-top: 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  font-family: monospace;
+}
+
+.quiz-prompt {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.quiz-prompt p {
+  margin: 0.3rem 0;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn-secondary,
+.btn-danger {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.btn-secondary {
+  background: #e9ecef;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #dee2e6;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.attendance-list {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #dee2e6;
+}
+
+.attendance-list h2 {
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.attendance-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.name {
+  font-weight: bold;
+  color: #333;
+}
+
+.department {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .scanner-card {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .scanner-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .btn-verify {
+    width: 100%;
+  }
+
+  .attendance-list {
+    margin-top: 1rem;
+  }
+
+  .attendance-item {
+    grid-template-columns: 30px 1fr;
+    gap: 0.8rem;
+  }
+
+  .department {
+    grid-column: 2;
+  }
+}
