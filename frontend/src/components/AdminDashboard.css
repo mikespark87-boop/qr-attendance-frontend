@@ -1,0 +1,220 @@
+.admin-dashboard {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--secondary-gray);
+  padding: var(--spacing-lg);
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--primary-red);
+}
+
+.admin-header h2 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.admin-actions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.admin-card {
+  background-color: var(--primary-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.admin-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: #f8f8f8;
+  border-bottom: 2px solid var(--primary-red);
+}
+
+.admin-card .card-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.admin-card .card-body {
+  padding: var(--spacing-md);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* User List */
+.user-list,
+.attendee-list,
+.quiz-list,
+.prize-list,
+.score-list,
+.winner-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.user-item,
+.attendee-item,
+.quiz-item,
+.prize-item,
+.score-item,
+.winner-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: #f8f8f8;
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary-red);
+}
+
+.user-info,
+.attendee-info,
+.prize-info,
+.winner-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.user-info strong,
+.attendee-info strong,
+.winner-info strong {
+  font-size: 14px;
+}
+
+.user-info .text-small,
+.attendee-info .text-small,
+.prize-info .text-small,
+.winner-info .text-small {
+  color: var(--dark-gray);
+  font-size: 12px;
+}
+
+/* Summary */
+.quiz-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.summary-item {
+  text-align: center;
+  padding: var(--spacing-md);
+  background-color: #f8f8f8;
+  border-radius: var(--radius-md);
+}
+
+.summary-item strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.summary-item span {
+  display: block;
+  font-size: 20px;
+  color: var(--primary-red);
+  font-weight: 700;
+}
+
+/* Prize Rank */
+.prize-rank {
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Score */
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.score-rank {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-red);
+  min-width: 40px;
+  text-align: center;
+}
+
+.score-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-info strong {
+  font-size: 14px;
+}
+
+.score-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-red);
+}
+
+/* Text Center */
+.text-center {
+  text-align: center;
+  color: var(--dark-gray);
+  padding: var(--spacing-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+
+  .admin-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .admin-actions button {
+    width: 100%;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-summary {
+    grid-template-columns: 1fr;
+  }
+}
