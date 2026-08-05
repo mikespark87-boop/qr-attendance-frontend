@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../contexts/AppContext';
 import './AdminDashboard.css';
 
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
           <div className="admin-card">
             <div className="card-header">
               <h3>❓ 퀴즈 관리</h3>
-              <span className="badge badge-primary">{newQuizzes.length}개</span>
+              <span className="badge badge-primary">{state.quizzes.length}개</span>
             </div>
             <div className="card-body">
               <div className="quiz-summary">
