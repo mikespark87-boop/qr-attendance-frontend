@@ -3,7 +3,7 @@ import './App.css';
 import QRScanner from './components/QRScanner';
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('scanner');
+  const [currentScreen] = useState('scanner');
 
   return (
     <div className="App">
