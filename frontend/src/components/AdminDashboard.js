@@ -3,9 +3,7 @@ import { AppContext } from '../contexts/AppContext';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
-  const { state, setScreen, resetAll, addAttendee } = useContext(AppContext);
-  const [newQuizzes, setNewQuizzes] = useState(state.quizzes);
-  const [newPrizes, setNewPrizes] = useState(state.prizes);
+  const { state, setScreen, resetAll } = useContext(AppContext);
 
   const handleStartEvent = () => {
     setScreen('reservation');
@@ -91,19 +89,19 @@ export default function AdminDashboard() {
               <div className="quiz-summary">
                 <div className="summary-item">
                   <strong>쉬움(Easy)</strong>
-                  <span>{newQuizzes.filter((q) => q.difficulty === 'easy').length}개</span>
+                  <span>{state.quizzes.filter((q) => q.difficulty === 'easy').length}개</span>
                 </div>
                 <div className="summary-item">
                   <strong>중간(Medium)</strong>
-                  <span>{newQuizzes.filter((q) => q.difficulty === 'medium').length}개</span>
+                  <span>{state.quizzes.filter((q) => q.difficulty === 'medium').length}개</span>
                 </div>
                 <div className="summary-item">
                   <strong>어려움(Hard)</strong>
-                  <span>{newQuizzes.filter((q) => q.difficulty === 'hard').length}개</span>
+                  <span>{state.quizzes.filter((q) => q.difficulty === 'hard').length}개</span>
                 </div>
               </div>
               <div className="quiz-list">
-                {newQuizzes.map((quiz) => (
+                {state.quizzes.map((quiz) => (
                   <div key={quiz.id} className="quiz-item">
                     <strong>{quiz.id}. {quiz.question}</strong>
                     <span className="badge badge-gray">{quiz.difficulty}</span>
@@ -117,11 +115,11 @@ export default function AdminDashboard() {
           <div className="admin-card">
             <div className="card-header">
               <h3>🎁 경품 관리</h3>
-              <span className="badge badge-primary">{newPrizes.length}개</span>
+              <span className="badge badge-primary">{state.prizes.length}개</span>
             </div>
             <div className="card-body">
               <div className="prize-list">
-                {newPrizes.map((prize) => (
+                {state.prizes.map((prize) => (
                   <div key={prize.id} className="prize-item">
                     <div className="prize-info">
                       <strong>{prize.rank}위: {prize.name}</strong>

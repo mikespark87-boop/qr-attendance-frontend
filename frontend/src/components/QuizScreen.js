@@ -65,7 +65,6 @@ export default function QuizScreen() {
   };
 
   const ranking = calculateRanking(state.scores);
-  const currentRank = ranking.find((r) => r.userId === state.currentAttendee.id);
 
   return (
     <div className="quiz-screen">

@@ -4,7 +4,7 @@ import { mockUsers } from '../data/mockUsers';
 import './QRScanScreen.css';
 
 export default function QRScanScreen() {
-  const { state, setScreen, addAttendee } = useContext(AppContext);
+  const { setScreen, addAttendee } = useContext(AppContext);
   const [scannedQR, setScannedQR] = useState('');
   const [manualName, setManualName] = useState('');
   const [manualDepartment, setManualDepartment] = useState('');

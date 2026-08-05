@@ -5,7 +5,7 @@ import { departments } from '../data/mockUsers';
 import './ReservationScreen.css';
 
 export default function ReservationScreen() {
-  const { state, setScreen, addAttendee } = useContext(AppContext);
+  const { setScreen, addAttendee } = useContext(AppContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
