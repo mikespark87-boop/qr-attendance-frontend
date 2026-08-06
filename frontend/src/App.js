@@ -3,6 +3,8 @@ import { AppProvider, AppContext } from './contexts/AppContext';
 import AdminDashboard from './components/AdminDashboard';
 import ReservationScreen from './components/ReservationScreen';
 import QRScanScreen from './components/QRScanScreen';
+import OperatorQRScanScreen from './components/OperatorQRScanScreen';
+import QuizEntryScreen from './components/QuizEntryScreen';
 import QuizScreen from './components/QuizScreen';
 import RankingScreen from './components/RankingScreen';
 import './styles/cheil-brand.css';
@@ -24,6 +26,8 @@ function AppContent() {
         {state.currentScreen === 'admin' && <AdminDashboard />}
         {state.currentScreen === 'reservation' && <ReservationScreen />}
         {state.currentScreen === 'qr-scan' && <QRScanScreen />}
+        {state.currentScreen === 'operator-qr-scan' && <OperatorQRScanScreen />}
+        {state.currentScreen === 'quiz-entry' && <QuizEntryScreen />}
         {state.currentScreen === 'quiz' && <QuizScreen />}
         {state.currentScreen === 'ranking' && <RankingScreen />}
       </main>

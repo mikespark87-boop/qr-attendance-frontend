@@ -3,10 +3,23 @@ import { AppContext } from '../contexts/AppContext';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
-  const { state, setScreen, resetAll } = useContext(AppContext);
+  const { state, setScreen, resetAll, startQuiz, getMissingAttendees } = useContext(AppContext);
+
+  const handleStartReservation = () => {
+    setScreen('reservation');
+  };
 
   const handleStartEvent = () => {
-    setScreen('reservation');
+    setScreen('operator-qr-scan');
+  };
+
+  const handleStartQuiz = () => {
+    if (state.attendees.length === 0) {
+      alert('참석자가 없습니다. 먼저 참석자를 등록해주세요.');
+      return;
+    }
+    startQuiz();
+    setScreen('quiz');
   };
 
   const handleResetEvent = () => {
@@ -15,6 +28,8 @@ export default function AdminDashboard() {
     }
   };
 
+  const missingAttendees = getMissingAttendees();
+
   return (
     <div className="admin-dashboard">
       <div className="admin-container">
@@ -22,8 +37,18 @@ export default function AdminDashboard() {
         <div className="admin-header">
           <h2>🔧 관리자 대시보드</h2>
           <div className="admin-actions">
+            <button className="btn btn-secondary" onClick={handleStartReservation}>
+              📝 참석 등록
+            </button>
             <button className="btn btn-primary" onClick={handleStartEvent}>
-              이벤트 시작
+              🔍 참석자 QR 스캔
+            </button>
+            <button
+              className="btn btn-success"
+              onClick={handleStartQuiz}
+              disabled={state.attendees.length === 0}
+            >
+              ▶️ 퀴즈 시작
             </button>
             <button className="btn btn-secondary" onClick={handleResetEvent}>
               초기화
@@ -72,6 +97,31 @@ export default function AdminDashboard() {
                         <span className="text-small">{attendee.department}</span>
                       </div>
                       <span className="badge badge-success">참석</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 미참석자 현황 */}
+          <div className="admin-card">
+            <div className="card-header">
+              <h3>⏳ 미참석자 현황</h3>
+              <span className="badge badge-warning">{missingAttendees.length}명</span>
+            </div>
+            <div className="card-body">
+              {missingAttendees.length === 0 ? (
+                <p className="text-center">모든 예약자가 참석했습니다!</p>
+              ) : (
+                <div className="missing-list">
+                  {missingAttendees.map((user) => (
+                    <div key={user.id} className="missing-item">
+                      <div className="missing-info">
+                        <strong>{user.name}</strong>
+                        <span className="text-small">{user.department}</span>
+                      </div>
+                      <span className="badge badge-warning">미참석</span>
                     </div>
                   ))}
                 </div>

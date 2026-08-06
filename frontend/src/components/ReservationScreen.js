@@ -5,7 +5,7 @@ import { departments } from '../data/mockUsers';
 import './ReservationScreen.css';
 
 export default function ReservationScreen() {
-  const { setScreen, addAttendee } = useContext(AppContext);
+  const { setScreen, addAttendee, setState } = useContext(AppContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,12 +31,14 @@ export default function ReservationScreen() {
 
     // QR 코드 생성 (간단히 email 기반)
     const generatedQR = `ATTENDEE_${Date.now()}_${formData.name}`;
+    const quizQR = `QUIZ_${generatedQR}_${Date.now()}`;
     setQrCode(generatedQR);
 
     // 참석자 추가
     addAttendee({
       id: generatedQR,
       ...formData,
+      quizQR,
       registeredAt: new Date().toISOString()
     });
 
@@ -44,7 +46,14 @@ export default function ReservationScreen() {
   };
 
   const handleGoToQRScan = () => {
-    setScreen('qr-scan');
+    // 생성한 QR 코드를 AppContext에 저장해서 QuizEntryScreen에 전달
+    if (setState) {
+      setState(prev => ({
+        ...prev,
+        registeredQR: qrCode
+      }));
+    }
+    setScreen('quiz-entry');
   };
 
   const handleNewRegistration = () => {

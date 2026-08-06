@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 import { AppContext } from '../contexts/AppContext';
 import { mockUsers } from '../data/mockUsers';
 import './QRScanScreen.css';
@@ -10,6 +11,51 @@ export default function QRScanScreen() {
   const [manualDepartment, setManualDepartment] = useState('');
   const [scannedUser, setScannedUser] = useState(null);
   const [showManualInput, setShowManualInput] = useState(false);
+  const [useCameraMode, setUseCameraMode] = useState(false);
+  const [cameraError, setCameraError] = useState(null);
+  const scannerRef = useRef(null);
+  const scannerInstanceRef = useRef(null);
+
+  useEffect(() => {
+    if (useCameraMode && scannerRef.current && !scannerInstanceRef.current) {
+      try {
+        const scanner = new Html5QrcodeScanner(
+          'qr-reader',
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250},
+            supportedScanTypes: ['image', 'canvas']
+          },
+          false
+        );
+
+        scanner.render(
+          (decodedText) => {
+            if (decodedText) {
+              setScannedQR(decodedText);
+              processQR(decodedText);
+              scanner.pause();
+            }
+          },
+          (error) => {
+            // 에러 무시 (QR 인식 전 로그)
+          }
+        );
+
+        scannerInstanceRef.current = scanner;
+        setCameraError(null);
+      } catch (err) {
+        setCameraError('카메라를 열 수 없습니다. 브라우저 권한을 확인하세요.');
+      }
+    }
+
+    return () => {
+      if (scannerInstanceRef.current && useCameraMode) {
+        scannerInstanceRef.current.clear().catch(() => {});
+        scannerInstanceRef.current = null;
+      }
+    };
+  }, [useCameraMode]);
 
   const handleQRScan = (e) => {
     const qrValue = e.target.value.trim();
@@ -67,6 +113,10 @@ export default function QRScanScreen() {
     setShowManualInput(false);
   };
 
+  const toggleCamera = () => {
+    setUseCameraMode(!useCameraMode);
+  };
+
   return (
     <div className="qr-scan-screen">
       <div className="qr-scan-container">
@@ -78,20 +128,49 @@ export default function QRScanScreen() {
               타운홀 미팅 장소의 QR 코드를 스캔하거나 입력하세요
             </p>
 
-            <div className="scan-input-section">
-              <input
-                type="text"
-                className="qr-input"
-                placeholder="QR 코드를 스캔하거나 입력하세요"
-                autoFocus
-                onBlur={(e) => handleQRScan(e)}
-                onChange={(e) => e.target.value && handleQRScan(e)}
-              />
-              <div className="scan-indicator">
-                <span className="dot"></span>
-                <span>스캔 대기 중...</span>
+            {cameraError && (
+              <div className="error-message">
+                <p>⚠️ {cameraError}</p>
               </div>
-            </div>
+            )}
+
+            {useCameraMode ? (
+              <>
+                <div id="qr-reader" style={{ width: '100%', marginBottom: '20px' }}></div>
+                <button onClick={toggleCamera} className="btn btn-secondary">
+                  수동으로 입력하기
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="scan-input-section">
+                  <input
+                    type="text"
+                    className="qr-input"
+                    placeholder="QR 코드를 입력하세요"
+                    value={scannedQR}
+                    autoFocus
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        handleQRScan(e);
+                      }
+                    }}
+                    onChange={(e) => {
+                      setScannedQR(e.target.value);
+                      if (e.target.value) handleQRScan(e);
+                    }}
+                  />
+                  <div className="scan-indicator">
+                    <span className="dot"></span>
+                    <span>입력 대기 중...</span>
+                  </div>
+                </div>
+
+                <button onClick={toggleCamera} className="btn btn-primary">
+                  📱 카메라로 스캔하기
+                </button>
+              </>
+            )}
 
             <div className="scan-info">
               <h3>📋 스캔 방법</h3>

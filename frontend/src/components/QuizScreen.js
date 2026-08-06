@@ -65,6 +65,8 @@ export default function QuizScreen() {
   };
 
   const ranking = calculateRanking(state.scores);
+  const currentUserRank = ranking.find(r => r.userId === state.currentAttendee.id);
+  const currentUserScore = state.scores[state.currentAttendee.id] || 0;
 
   return (
     <div className="quiz-screen">
@@ -77,11 +79,19 @@ export default function QuizScreen() {
               <span className="current-q">Q{state.currentQuizIndex + 1}</span>
               <span className="total-q">/ {state.quizzes.length}</span>
             </div>
+            {currentUserRank && (
+              <div className="current-rank">
+                <span className="rank-medal">
+                  {currentUserRank.rank === 1 ? '🥇' : currentUserRank.rank === 2 ? '🥈' : currentUserRank.rank === 3 ? '🥉' : '🎯'}
+                </span>
+                <span className="rank-text">#{currentUserRank.rank} · {currentUserScore}점</span>
+              </div>
+            )}
           </div>
           <div className="quiz-header-right">
             <div className="attendee-qr">
               <QRCode
-                value={state.currentAttendee.id}
+                value={state.currentAttendee.quizQR || state.currentAttendee.id}
                 size={80}
                 level="H"
                 includeMargin={true}
@@ -154,7 +164,7 @@ export default function QuizScreen() {
 
         {/* 실시간 랭킹 */}
         <div className="realtime-ranking">
-          <h4>🏆 실시간 랭킹</h4>
+          <h4>🏆 실시간 상위 순위</h4>
           <div className="ranking-list">
             {ranking.slice(0, 3).map((rank, idx) => (
               <div
@@ -163,11 +173,16 @@ export default function QuizScreen() {
                   rank.userId === state.currentAttendee.id ? 'current-user' : ''
                 }`}
               >
-                <div className="rank-badge">#{rank.rank}</div>
+                <div className="rank-badge">
+                  {rank.rank === 1 ? '🥇' : rank.rank === 2 ? '🥈' : '🥉'}
+                </div>
                 <div className="rank-info">
                   <strong>{rank.userId}</strong>
                   <span>{rank.score}점</span>
                 </div>
+                {rank.userId === state.currentAttendee.id && (
+                  <div className="current-badge">나</div>
+                )}
               </div>
             ))}
           </div>

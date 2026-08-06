@@ -1,19 +1,13 @@
 {
   "name": "qr-attendance-system",
   "version": "1.0.0",
+  "description": "QR-based attendance system for townhall meetings",
   "private": true,
-  "description": "QR Attendance + Quiz + Prize System",
-  "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd frontend && npm start",
-    "install-frontend": "cd frontend && npm install"
+  "dependencies": {
+    "nodemailer": "^6.9.7"
   },
-  "keywords": [
-    "qr",
-    "attendance",
-    "quiz",
-    "prize"
-  ],
-  "author": "mikey14",
-  "license": "ISC"
+  "scripts": {
+    "dev": "cd frontend && npm start",
+    "build": "cd frontend && npm run build"
+  }
 }

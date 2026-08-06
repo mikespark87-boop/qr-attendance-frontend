@@ -1,4 +1,13 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "frontend/build"
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/build",
+  "env": {
+    "EMAIL_USER": "@GMAIL_USER",
+    "EMAIL_PASSWORD": "@GMAIL_PASSWORD"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }

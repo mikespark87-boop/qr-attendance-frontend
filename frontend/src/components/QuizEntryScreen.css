@@ -1,0 +1,251 @@
+.quiz-entry-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-entry-container {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+.quiz-entry-container h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.error-banner {
+  background-color: #fee;
+  color: #c33;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c33;
+  font-size: 13px;
+}
+
+.scan-area {
+  margin-bottom: 20px;
+}
+
+#quiz-entry-qr-reader {
+  border: 3px solid #667eea;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+  min-height: 350px;
+  margin-bottom: 15px;
+}
+
+.manual-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.manual-input input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.manual-input input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #667eea;
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #5568d3;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 2px solid #ddd;
+  width: 100%;
+}
+
+.btn-secondary:hover {
+  background-color: #eeeeee;
+}
+
+.btn-large {
+  padding: 14px 24px;
+  font-size: 16px;
+}
+
+.confirm-card,
+.ready-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #fff 100%);
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.confirm-info {
+  margin-bottom: 20px;
+}
+
+.info-group {
+  margin-bottom: 15px;
+}
+
+.info-group label {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.info-group p {
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.info-badge {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.confirm-actions,
+.start-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.greeting {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.greeting p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.qr-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 2px solid #f0f0f0;
+}
+
+.qr-label {
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.qr-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  border: 2px solid #f0f0f0;
+}
+
+.qr-text {
+  color: #999;
+  font-size: 12px;
+  word-break: break-all;
+  margin: 0;
+  font-family: monospace;
+}
+
+.status-message {
+  background: #f0f7ff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-left: 4px solid #667eea;
+  text-align: center;
+}
+
+.status-message p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #333;
+}
+
+.status-message .wait {
+  color: #e65100;
+  font-weight: 600;
+}
+
+.status-message .ready {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.status-message .hint {
+  color: #666;
+  font-size: 12px;
+}
+
+@media (max-width: 480px) {
+  .quiz-entry-container {
+    padding: 20px;
+  }
+
+  .quiz-entry-container h1 {
+    font-size: 24px;
+  }
+
+  #quiz-entry-qr-reader {
+    min-height: 300px;
+  }
+}
