@@ -2,11 +2,6 @@
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/build",
   "installCommand": "cd frontend && npm install",
-  "env": {
-    "EMAIL_USER": "@GMAIL_USER",
-    "EMAIL_PASSWORD": "@GMAIL_PASSWORD",
-    "REACT_APP_API_URL": "@react-app-api-url"
-  },
   "regions": ["icn1"],
   "functions": {
     "api/**/*.js": {
