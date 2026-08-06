@@ -1,13 +1,33 @@
 {
   "name": "qr-attendance-system",
   "version": "1.0.0",
-  "description": "QR-based attendance system for townhall meetings",
+  "description": "QR Attendance + Quiz + Prize System",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikespark87-boop/qr-attendance-frontend.git"
+  },
   "dependencies": {
     "nodemailer": "^6.9.7"
   },
   "scripts": {
-    "dev": "cd frontend && npm start",
-    "build": "cd frontend && npm run build"
-  }
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start",
+    "test": "cd frontend && npm test",
+    "lint": "cd frontend && npm run lint",
+    "install": "cd frontend && npm install"
+  },
+  "keywords": [
+    "qr",
+    "attendance",
+    "quiz",
+    "prize"
+  ],
+  "author": "mikey14",
+  "license": "MIT"
 }
