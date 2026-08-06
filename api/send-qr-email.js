@@ -7,6 +7,20 @@ export default async function handler(req, res) {
 
   const { email, qrCode, attendeeName } = req.body;
 
+  // 디버깅: 환경변수 확인
+  console.log('EMAIL_USER:', process.env.EMAIL_USER ? 'exists' : 'NOT FOUND');
+  console.log('EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? 'exists' : 'NOT FOUND');
+
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    return res.status(500).json({
+      error: '환경변수가 설정되지 않았습니다. Vercel에서 EMAIL_USER와 EMAIL_PASSWORD를 설정하세요.',
+      envVars: {
+        EMAIL_USER: process.env.EMAIL_USER ? 'SET' : 'MISSING',
+        EMAIL_PASSWORD: process.env.EMAIL_PASSWORD ? 'SET' : 'MISSING'
+      }
+    });
+  }
+
   try {
     // 환경변수에서 이메일 설정 가져오기
     const transporter = nodemailer.createTransport({
