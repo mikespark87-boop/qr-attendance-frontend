@@ -3,10 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "description": "QR Attendance + Quiz + Prize System",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikespark87-boop/qr-attendance-frontend.git"
+  },
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
     "start": "cd frontend && npm start",
-    "install-frontend": "cd frontend && npm install"
+    "test": "cd frontend && npm test",
+    "lint": "cd frontend && npm run lint",
+    "install": "cd frontend && npm install"
   },
   "keywords": [
     "qr",
@@ -15,5 +26,5 @@
     "prize"
   ],
   "author": "mikey14",
-  "license": "ISC"
+  "license": "MIT"
 }
