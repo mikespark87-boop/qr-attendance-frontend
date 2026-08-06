@@ -10,7 +10,6 @@ export default function OperatorQRScanScreen() {
   const [manualQR, setManualQR] = useState('');
   const [lastScanned, setLastScanned] = useState(null);
   const [cameraError, setCameraError] = useState(null);
-  const scannerRef = useRef(null);
   const scannerInstanceRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function OperatorQRScanScreen() {
         scannerInstanceRef.current = null;
       }
     };
-  }, [useCameraMode]);
+  }, [useCameraMode, processQRCode]);
 
   const processQRCode = (qrValue) => {
     // ATTENDEE_xxx 형식의 QR 코드 처리

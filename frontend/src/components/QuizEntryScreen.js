@@ -38,7 +38,6 @@ export default function QuizEntryScreen() {
   const [manualQR, setManualQR] = useState('');
   const [scannedAttendee, setScannedAttendee] = useState(null);
   const [cameraError, setCameraError] = useState(null);
-  const scannerRef = useRef(null);
   const scannerInstanceRef = useRef(null);
   const qrCodeRef = useRef(null);
 
@@ -80,7 +79,7 @@ export default function QuizEntryScreen() {
         scannerInstanceRef.current = null;
       }
     };
-  }, [useCameraMode, step]);
+  }, [useCameraMode, step, processQRCode]);
 
   const processQRCode = (qrValue) => {
     // ATTENDEE_xxx 형식의 QR 코드 처리

@@ -55,7 +55,7 @@ export default function QRScanScreen() {
         scannerInstanceRef.current = null;
       }
     };
-  }, [useCameraMode]);
+  }, [useCameraMode, processQR]);
 
   const handleQRScan = (e) => {
     const qrValue = e.target.value.trim();
