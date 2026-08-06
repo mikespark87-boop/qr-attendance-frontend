@@ -2,15 +2,9 @@
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/build",
   "installCommand": "cd frontend && npm install",
-  "regions": ["icn1"],
   "functions": {
     "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "git": {
-    "deploymentEnabled": {
-      "main": true
+      "runtime": "node18.x"
     }
   }
 }
